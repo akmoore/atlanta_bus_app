@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   include LocationsHelper
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :cities_list, only: [:edit, :new]
 
   # GET /locations
   # GET /locations.json
@@ -22,6 +23,7 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
+    
   end
 
   # GET /locations/1/edit
@@ -72,6 +74,10 @@ class LocationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_location
       @location = Location.find(params[:id])
+    end
+
+    def cities_list
+      @cities = ['Atlanta','Vine City', 'Oakland City']
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
